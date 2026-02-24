@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sashank P.S | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<style>
+:root {
+  --blue: #1a6fff;
+  --blue-glow: rgba(26,111,255,0.5);
+  --blue-dim: rgba(26,111,255,0.15);
+  --blue-bright: #4d8fff;
+  --bg: #050810;
+  --surface: #0b1120;
+  --surface2: #0e1629;
+  --text: #e8eeff;
+  --text-muted: #8899bb;
+  --border: rgba(26,111,255,0.2);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; scroll-behavior:smooth; }
+
+body {
+  font-family: 'Syne', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* SUBTLE BG ORBS — smaller than before */
+body::before {
+  content:'';
+  position:fixed;
+  width:320px; height:320px;
+  background: radial-gradient(circle, rgba(26,111,255,0.18), transparent 70%);
+  top:-80px; left:-80px;
+  pointer-events:none; z-index:0;
+  animation: orb1 12s ease-in-out infinite alternate;
+}
+body::after {
+  content:'';
+  position:fixed;
+  width:280px; height:280px;
+  background: radial-gradient(circle, rgba(26,111,255,0.13), transparent 70%);
+  bottom:-60px; right:-60px;
+  pointer-events:none; z-index:0;
+  animation: orb2 14s ease-in-out infinite alternate;
+}
+@keyframes orb1 { 0%{transform:translate(0,0)} 100%{transform:translate(40px,40px)} }
+@keyframes orb2 { 0%{transform:translate(0,0)} 100%{transform:translate(-30px,-30px)} }
+
+#particles-js {
+  position:fixed; width:100%; height:100%; z-index:0;
+}
+
+/* NAV */
+nav {
+  background: rgba(5,8,16,0.92);
+  backdrop-filter: blur(12px);
+  display:flex; justify-content:space-between; align-items:center;
+  padding:18px 60px;
+  border-bottom: 1px solid var(--border);
+  position:sticky; top:0; z-index:100;
+}
+nav h1 {
+  font-family:'Space Mono', monospace;
+  font-size:1.1rem;
+  letter-spacing:4px;
+  color:white;
+}
+nav h1 span { color: var(--blue); }
+nav ul { display:flex; list-style:none; align-items:center; gap:10px; }
+nav ul li a {
+  text-decoration:none;
+  color: var(--text-muted);
+  font-size:0.85rem;
+  letter-spacing:1px;
+  padding:8px 14px;
+  border-radius:6px;
+  transition:0.2s;
+}
+nav ul li a:hover { color:white; background: var(--blue-dim); }
+
+/* HERO */
+.hero {
+  text-align:center;
+  padding:130px 20px 90px;
+  position:relative; z-index:1;
+}
+.profile-img {
+  width:150px; height:150px;
+  border-radius:50%;
+  border:3px solid var(--blue);
+  box-shadow: 0 0 0 6px var(--blue-dim), 0 0 40px var(--blue-glow);
+  margin-bottom:24px;
+  animation: pulse 3s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,100%{ box-shadow: 0 0 0 6px var(--blue-dim), 0 0 40px var(--blue-glow); }
+  50%{ box-shadow: 0 0 0 10px var(--blue-dim), 0 0 60px var(--blue-glow); }
+}
+.hero h2 {
+  font-size:2.8rem;
+  font-weight:800;
+  letter-spacing:2px;
+  line-height:1.2;
+}
+.hero h2 span { color: var(--blue); }
+.hero .tagline {
+  color: var(--text-muted);
+  margin-top:10px;
+  font-family:'Space Mono',monospace;
+  font-size:0.9rem;
+  letter-spacing:2px;
+}
+
+/* SOCIALS BAR */
+.socials-bar {
+  display:flex; justify-content:center; gap:16px;
+  margin-top:32px;
+}
+.social-btn {
+  display:flex; align-items:center; gap:8px;
+  padding:10px 20px;
+  border: 1px solid var(--border);
+  border-radius:8px;
+  background: var(--surface2);
+  color: var(--text-muted);
+  text-decoration:none;
+  font-size:0.82rem;
+  font-family:'Space Mono',monospace;
+  letter-spacing:1px;
+  transition:0.25s;
+}
+.social-btn i { font-size:1rem; }
+.social-btn:hover {
+  border-color: var(--blue);
+  color:white;
+  background: var(--blue-dim);
+  transform:translateY(-3px);
+  box-shadow: 0 6px 20px var(--blue-glow);
+}
+
+/* HERO ACTION BUTTONS */
+.hero-btns { margin-top:32px; display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
+
+.btn-primary {
+  padding:12px 32px;
+  background: var(--blue);
+  color:white;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  font-family:'Syne',sans-serif;
+  font-weight:600;
+  font-size:0.9rem;
+  letter-spacing:1px;
+  transition:0.25s;
+  box-shadow: 0 4px 20px var(--blue-glow);
+  text-decoration:none;
+  display:inline-block;
+}
+.btn-primary:hover { background:#0d55e0; transform:translateY(-3px); box-shadow:0 8px 30px var(--blue-glow); }
+
+.btn-outline {
+  padding:12px 32px;
+  background: transparent;
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  border-radius:8px;
+  cursor:pointer;
+  font-family:'Syne',sans-serif;
+  font-weight:600;
+  font-size:0.9rem;
+  letter-spacing:1px;
+  transition:0.25s;
+  text-decoration:none;
+  display:inline-block;
+}
+.btn-outline:hover { background: var(--blue-dim); transform:translateY(-3px); }
+
+/* SECTIONS */
+section {
+  padding:90px 10%;
+  position:relative; z-index:1;
+}
+.section-title {
+  font-size:1.6rem; font-weight:800; letter-spacing:3px;
+  color: var(--blue); margin-bottom:8px;
+  font-family:'Space Mono',monospace;
+  text-transform:uppercase;
+}
+.section-line {
+  width:60px; height:2px; background:var(--blue);
+  margin-bottom:40px;
+  box-shadow:0 0 10px var(--blue);
+}
+
+/* SKILLS */
+.skill { margin-bottom:24px; }
+.skill-header { display:flex; justify-content:space-between; margin-bottom:8px; }
+.skill-header span { font-size:0.85rem; color:var(--text-muted); font-family:'Space Mono',monospace; }
+.skill-header span:last-child { color:var(--blue); }
+.progress {
+  background: var(--surface2);
+  border-radius:4px;
+  overflow:hidden;
+  height:6px;
+  border:1px solid var(--border);
+}
+.progress-bar {
+  height:100%; width:0;
+  background: linear-gradient(90deg, var(--blue), var(--blue-bright));
+  border-radius:4px;
+  transition:2s cubic-bezier(.22,.68,0,1.2);
+  box-shadow:0 0 10px var(--blue-glow);
+}
+
+/* ADD SKILL PANEL */
+.add-panel {
+  margin-top:30px;
+  background:var(--surface2);
+  border:1px dashed var(--border);
+  border-radius:10px;
+  padding:20px;
+  display:none;
+}
+.add-panel.open { display:block; }
+.add-panel input, .add-panel select {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:10px 14px;
+  color:white;
+  font-family:'Space Mono',monospace;
+  font-size:0.85rem;
+  width:100%;
+  margin-bottom:10px;
+  outline:none;
+  transition:0.2s;
+}
+.add-panel input:focus, .add-panel select:focus { border-color:var(--blue); }
+
+/* PROJECTS */
+.projects-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+  gap:24px;
+}
+.project-card {
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:28px;
+  transition:0.3s;
+  position:relative;
+  overflow:hidden;
+}
+.project-card::before {
+  content:'';
+  position:absolute; top:0; left:0;
+  width:100%; height:3px;
+  background:linear-gradient(90deg, var(--blue), transparent);
+}
+.project-card:hover {
+  border-color:var(--blue);
+  transform:translateY(-5px);
+  box-shadow:0 12px 40px var(--blue-glow);
+}
+.project-card h3 { font-size:1rem; margin-bottom:10px; }
+.project-card p { color:var(--text-muted); font-size:0.85rem; line-height:1.7; margin-bottom:16px; }
+.tag {
+  display:inline-block;
+  background:var(--blue-dim);
+  color:var(--blue-bright);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:3px 10px;
+  font-size:0.72rem;
+  font-family:'Space Mono',monospace;
+  margin:3px 3px 0 0;
+}
+.project-links { margin-top:16px; display:flex; gap:10px; }
+.project-links a {
+  font-size:0.78rem;
+  color:var(--blue);
+  text-decoration:none;
+  font-family:'Space Mono',monospace;
+  letter-spacing:1px;
+  padding:6px 14px;
+  border:1px solid var(--border);
+  border-radius:6px;
+  transition:0.2s;
+}
+.project-links a:hover { background:var(--blue-dim); border-color:var(--blue); }
+
+/* CERTIFICATES */
+.cert-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:24px;
+}
+.cert-card {
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:24px;
+  text-align:center;
+  transition:0.3s;
+}
+.cert-card:hover {
+  border-color:var(--blue);
+  box-shadow:0 8px 30px var(--blue-glow);
+  transform:translateY(-4px);
+}
+.cert-card i { font-size:2rem; color:var(--blue); margin-bottom:12px; }
+.cert-card h3 { font-size:0.9rem; margin-bottom:16px; }
+
+/* SMALL BTN */
+.btn-sm {
+  padding:8px 20px;
+  font-size:0.78rem;
+  letter-spacing:1px;
+}
+
+/* ADD TOGGLE BTN */
+.btn-add {
+  margin-top:24px;
+  padding:10px 22px;
+  background:transparent;
+  color:var(--blue);
+  border:1px dashed var(--blue);
+  border-radius:8px;
+  cursor:pointer;
+  font-family:'Space Mono',monospace;
+  font-size:0.8rem;
+  letter-spacing:1px;
+  transition:0.2s;
+}
+.btn-add:hover { background:var(--blue-dim); }
+
+/* WHATSAPP CHAT WIDGET */
+.chat-toggle {
+  position:fixed; bottom:30px; right:30px;
+  width:56px; height:56px;
+  background:var(--blue);
+  border-radius:50%; border:none;
+  cursor:pointer;
+  box-shadow:0 4px 20px var(--blue-glow);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.4rem; color:white;
+  z-index:200;
+  transition:0.3s;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)}
+}
+.chat-toggle:hover { transform:scale(1.1) translateY(-3px); }
+
+.chat-window {
+  position:fixed; bottom:98px; right:30px;
+  width:340px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+  box-shadow:0 20px 60px rgba(0,0,0,0.6);
+  z-index:200;
+  display:none;
+  flex-direction:column;
+  overflow:hidden;
+  animation:slideUp 0.3s ease;
+}
+.chat-window.open { display:flex; }
+@keyframes slideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+.chat-header {
+  background:linear-gradient(135deg, #0d55e0, var(--blue));
+  padding:16px 20px;
+  display:flex; align-items:center; gap:12px;
+}
+.chat-header .avatar {
+  width:36px; height:36px; border-radius:50%;
+  background:white;
+  display:flex; align-items:center; justify-content:center;
+  font-size:1rem; color:var(--blue);
+}
+.chat-header h4 { font-size:0.9rem; }
+.chat-header p { font-size:0.72rem; opacity:0.8; font-family:'Space Mono',monospace; }
+.chat-header .close-chat {
+  margin-left:auto; background:none; border:none; color:white; cursor:pointer; font-size:1.1rem; opacity:0.7;
+}
+.chat-header .close-chat:hover { opacity:1; }
+
+.chat-messages {
+  padding:16px;
+  flex:1;
+  overflow-y:auto;
+  max-height:260px;
+  display:flex; flex-direction:column; gap:10px;
+}
+.msg {
+  max-width:80%;
+  padding:10px 14px;
+  border-radius:12px;
+  font-size:0.82rem;
+  line-height:1.5;
+  font-family:'Space Mono',monospace;
+}
+.msg.bot {
+  background:var(--surface2);
+  border:1px solid var(--border);
+  align-self:flex-start;
+  border-bottom-left-radius:2px;
+}
+.msg.user {
+  background:var(--blue);
+  align-self:flex-end;
+  border-bottom-right-radius:2px;
+}
+.msg.typing { color:var(--text-muted); font-style:italic; }
+
+.chat-input-row {
+  display:flex; gap:8px; padding:14px 16px;
+  border-top:1px solid var(--border);
+  background:var(--surface2);
+}
+.chat-input-row input {
+  flex:1;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:10px 14px;
+  color:white;
+  font-family:'Space Mono',monospace;
+  font-size:0.78rem;
+  outline:none;
+  transition:0.2s;
+}
+.chat-input-row input:focus { border-color:var(--blue); }
+.chat-input-row button {
+  background:var(--blue);
+  border:none;
+  border-radius:8px;
+  padding:0 14px;
+  color:white;
+  cursor:pointer;
+  font-size:0.9rem;
+  transition:0.2s;
+}
+.chat-input-row button:hover { background:#0d55e0; }
+
+/* FOOTER */
+footer {
+  text-align:center;
+  padding:28px;
+  background:var(--surface);
+  border-top:1px solid var(--border);
+  color:var(--text-muted);
+  font-size:0.8rem;
+  font-family:'Space Mono',monospace;
+  letter-spacing:2px;
+  position:relative; z-index:1;
+}
+footer span { color:var(--blue); }
+</style>
+</head>
+<body>
+
+<div id="particles-js"></div>
+
+<!-- NAV -->
+<nav>
+  <h1>SASHANK<span>.</span>PS</h1>
+  <ul>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certificates">Certs</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <img src="profile.jpg" class="profile-img" alt="Sashank P.S">
+  <h2>Hi, I'm <span>Sashank P.S</span></h2>
+  <p class="tagline">B.Tech ECE &nbsp;·&nbsp; Embedded Systems &nbsp;·&nbsp; Digital Design</p>
+
+  <!-- SOCIAL BUTTONS -->
+  <div class="socials-bar">
+    <!-- 🔧 Replace # with your actual profile URLs below -->
+    <a href="https://www.linkedin.com/in/sashank-p-s-72956031b/" target="_blank" class="social-btn">
+      <i class="fab fa-linkedin"></i> LinkedIn
+    </a>
+    <a href="https://github.com/sashank2037" target="_blank" class="social-btn">
+      <i class="fab fa-github"></i> GitHub
+    </a>
+    <a href="https://www.instagram.com/sashank_0_0_7/" target="_blank" class="social-btn">
+      <i class="fab fa-instagram"></i> Instagram
+    </a>
+    <a href="https://twitter.com/YOUR_USERNAME" target="_blank" class="social-btn">
+      <i class="fab fa-x-twitter"></i> Twitter/X
+    </a>
+    <a href="mailto:sashankprasath07@gmail.com" class="social-btn">
+      <i class="fas fa-envelope"></i> Email Me
+    </a>
+  </div>
+
+  <div class="hero-btns">
+    <a href="https://www.overleaf.com/download/project/699dcace7e7ef018395b41de/build/19c906080e1-3d2e627b4e72b4b1/output/output.pdf?compileGroup=standard&clsiserverid=clsi-pre-emp-c3d-c-f-g0fl&enable_pdf_caching=true&popupDownload=true&editorId=f9e42d9c-f208-4605-9257-1677f17b7fc8" target="_blank" class="btn-primary">View Resume</a>
+    <a href="https://www.overleaf.com/download/project/699dcace7e7ef018395b41de/build/19c906080e1-3d2e627b4e72b4b1/output/output.pdf?compileGroup=standard&clsiserverid=clsi-pre-emp-c3d-c-f-g0fl&enable_pdf_caching=true&popupDownload=true&editorId=f9e42d9c-f208-4605-9257-1677f17b7fc8" download class="btn-outline">Download PDF</a>
+  </div>
+</div>
+
+<!-- RESUME -->
+<section id="resume" style="display:none"></section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-title">Technical Skills</div>
+  <div class="section-line"></div>
+
+  <div id="skills-list">
+    <!-- 🔧 Add or remove skills here. data-width = proficiency % -->
+    <div class="skill">
+      <div class="skill-header"><span>Python</span><span>85%</span></div>
+      <div class="progress"><div class="progress-bar" data-width="85%"></div></div>
+    </div>
+    <div class="skill">
+      <div class="skill-header"><span>Embedded C</span><span>80%</span></div>
+      <div class="progress"><div class="progress-bar" data-width="80%"></div></div>
+    </div>
+    <div class="skill">
+      <div class="skill-header"><span>Verilog HDL</span><span>75%</span></div>
+      <div class="progress"><div class="progress-bar" data-width="75%"></div></div>
+    </div>
+    <div class="skill">
+      <div class="skill-header"><span>MATLAB</span><span>85%</span></div>
+      <div class="progress"><div class="progress-bar" data-width="85%"></div></div>
+    </div>
+    <div class="skill">
+      <div class="skill-header"><span>Probability & Statistics</span><span>90%</span></div>
+      <div class="progress"><div class="progress-bar" data-width="90%"></div></div>
+    </div>
+  </div>
+
+  <!-- ADD NEW SKILL (dynamic) -->
+  <button class="btn-add" onclick="togglePanel('add-skill-panel')">+ Add New Skill</button>
+  <div class="add-panel" id="add-skill-panel">
+    <input type="text" id="new-skill-name" placeholder="Skill name (e.g. React)">
+    <input type="number" id="new-skill-level" placeholder="Proficiency % (e.g. 70)" min="1" max="100">
+    <button class="btn-primary btn-sm" onclick="addSkill()">Add Skill</button>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-title">Projects</div>
+  <div class="section-line"></div>
+
+  <div class="projects-grid" id="projects-grid">
+    <!-- 🔧 Add your real projects here — copy a .project-card block to add more -->
+    <div class="project-card">
+      <h3>Smart Embedded System</h3>
+      <p>A real-time sensor monitoring system built with ARM Cortex-M4, featuring UART communication and interrupt-driven architecture.</p>
+      <div>
+        <span class="tag">Embedded C</span>
+        <span class="tag">ARM</span>
+        <span class="tag">UART</span>
+      </div>
+      <div class="project-links">
+        <a href="#"><i class="fab fa-github"></i> Code</a>
+        <a href="#"><i class="fas fa-external-link-alt"></i> Demo</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>FPGA Digital Design</h3>
+      <p>Implemented a pipelined RISC processor using Verilog HDL on Xilinx FPGA with full simulation and synthesis flow.</p>
+      <div>
+        <span class="tag">Verilog</span>
+        <span class="tag">FPGA</span>
+        <span class="tag">Xilinx</span>
+      </div>
+      <div class="project-links">
+        <a href="#"><i class="fab fa-github"></i> Code</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <h3>Signal Processing in MATLAB</h3>
+      <p>Audio signal denoising pipeline using FFT, Wiener filters, and spectral subtraction achieving 94% noise reduction.</p>
+      <div>
+        <span class="tag">MATLAB</span>
+        <span class="tag">DSP</span>
+        <span class="tag">FFT</span>
+      </div>
+      <div class="project-links">
+        <a href="#"><i class="fab fa-github"></i> Code</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD NEW PROJECT (dynamic) -->
+  <button class="btn-add" onclick="togglePanel('add-project-panel')">+ Add New Project</button>
+  <div class="add-panel" id="add-project-panel">
+    <input type="text" id="proj-title" placeholder="Project title">
+    <input type="text" id="proj-desc" placeholder="Short description">
+    <input type="text" id="proj-tags" placeholder="Tags (comma separated, e.g. Python, ML)">
+    <input type="text" id="proj-github" placeholder="GitHub link (optional)">
+    <input type="text" id="proj-demo" placeholder="Demo link (optional)">
+    <button class="btn-primary btn-sm" onclick="addProject()">Add Project</button>
+  </div>
+</section>
+
+<!-- CERTIFICATES -->
+<section id="certificates">
+  <div class="section-title">Certificates</div>
+  <div class="section-line"></div>
+
+  <div class="cert-grid" id="cert-grid">
+    <!-- 🔧 Add more cert cards by copying a .cert-card block -->
+    <div class="cert-card">
+      <i class="fas fa-certificate"></i>
+      <h3>MATLAB Onramp</h3>
+      <a href="https://linkedin.com/your-cert-link" target="_blank" class="btn-primary btn-sm">View Certificate</a>
+    </div>
+
+    <div class="cert-card">
+      <i class="fas fa-microchip"></i>
+      <h3>Embedded Systems — Coursera</h3>
+      <a href="#" target="_blank" class="btn-primary btn-sm">View Certificate</a>
+    </div>
+  </div>
+
+  <button class="btn-add" onclick="togglePanel('add-cert-panel')">+ Add Certificate</button>
+  <div class="add-panel" id="add-cert-panel">
+    <input type="text" id="cert-name" placeholder="Certificate name">
+    <input type="text" id="cert-link" placeholder="Certificate link (URL)">
+    <button class="btn-primary btn-sm" onclick="addCert()">Add Certificate</button>
+  </div>
+</section>
+
+<footer>
+  © 2026 <span>Sashank P.S</span> &nbsp;·&nbsp; <a href="mailto:sashankprasath07@gmail.com" style="color:var(--blue);text-decoration:none;">sashankprasath07@gmail.com</a>
+</footer>
+
+<!-- WHATSAPP AI CHAT WIDGET -->
+<button class="chat-toggle" onclick="toggleChat()" title="Chat with me">
+  <i class="fab fa-whatsapp"></i>
+</button>
+
+<div class="chat-window" id="chat-window">
+  <div class="chat-header">
+    <div class="avatar"><i class="fas fa-robot"></i></div>
+    <div>
+      <h4>Sashank's Assistant</h4>
+      <p>Replies via WhatsApp</p>
+    </div>
+    <button class="close-chat" onclick="toggleChat()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="msg bot">Hey! 👋 I'm Sashank's assistant. Ask me anything — I'll forward your message to him on WhatsApp!</div>
+  </div>
+  <div class="chat-input-row">
+    <input type="text" id="chat-input" placeholder="Type your message..." onkeydown="if(event.key==='Enter')sendMessage()">
+    <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// 🔧 CONFIG — REPLACE THESE WITH YOUR DETAILS
+// ============================================================
+const WHATSAPP_NUMBER = "919994461916"; // your WhatsApp number
+const YOUR_NAME = "Sashank P.S";
+// ============================================================
+
+// PARTICLES
+particlesJS("particles-js",{
+  particles:{
+    number:{value:55},
+    color:{value:"#1a6fff"},
+    size:{value:2},
+    opacity:{value:0.4},
+    line_linked:{enable:true,color:"#1a6fff",opacity:0.15,width:1},
+    move:{speed:1.5}
+  },
+  interactivity:{events:{onhover:{enable:true,mode:"repulse"}}}
+});
+
+// SKILL PROGRESS BARS
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll(".progress-bar").forEach(bar=>{
+        bar.style.width = bar.getAttribute("data-width");
+      });
+    }
+  });
+},{threshold:0.2});
+document.querySelectorAll("section").forEach(s=>observer.observe(s));
+
+// SCROLL fallback
+window.addEventListener("scroll",()=>{
+  document.querySelectorAll(".progress-bar").forEach(bar=>{
+    if(bar.getBoundingClientRect().top < window.innerHeight){
+      bar.style.width = bar.getAttribute("data-width");
+    }
+  });
+});
+
+// TOGGLE ADD PANELS
+function togglePanel(id){
+  const p = document.getElementById(id);
+  p.classList.toggle('open');
+}
+
+// ADD SKILL DYNAMICALLY
+function addSkill(){
+  const name = document.getElementById('new-skill-name').value.trim();
+  const level = parseInt(document.getElementById('new-skill-level').value);
+  if(!name || isNaN(level) || level<1 || level>100) return alert('Please fill in a valid skill name and percentage.');
+  const html = `<div class="skill">
+    <div class="skill-header"><span>${name}</span><span>${level}%</span></div>
+    <div class="progress"><div class="progress-bar" data-width="${level}%" style="width:${level}%"></div></div>
+  </div>`;
+  document.getElementById('skills-list').insertAdjacentHTML('beforeend', html);
+  document.getElementById('new-skill-name').value='';
+  document.getElementById('new-skill-level').value='';
+  togglePanel('add-skill-panel');
+}
+
+// ADD PROJECT DYNAMICALLY
+function addProject(){
+  const title = document.getElementById('proj-title').value.trim();
+  const desc = document.getElementById('proj-desc').value.trim();
+  const tags = document.getElementById('proj-tags').value.split(',').map(t=>t.trim()).filter(Boolean);
+  const gh = document.getElementById('proj-github').value.trim();
+  const demo = document.getElementById('proj-demo').value.trim();
+  if(!title||!desc) return alert('Please fill in at least title and description.');
+  const tagHtml = tags.map(t=>`<span class="tag">${t}</span>`).join('');
+  const linkHtml = `
+    ${gh ? `<a href="${gh}" target="_blank"><i class="fab fa-github"></i> Code</a>` : ''}
+    ${demo ? `<a href="${demo}" target="_blank"><i class="fas fa-external-link-alt"></i> Demo</a>` : ''}
+  `;
+  const html = `<div class="project-card">
+    <h3>${title}</h3><p>${desc}</p>
+    <div>${tagHtml}</div>
+    <div class="project-links">${linkHtml}</div>
+  </div>`;
+  document.getElementById('projects-grid').insertAdjacentHTML('beforeend', html);
+  ['proj-title','proj-desc','proj-tags','proj-github','proj-demo'].forEach(id=>document.getElementById(id).value='');
+  togglePanel('add-project-panel');
+}
+
+// ADD CERT DYNAMICALLY
+function addCert(){
+  const name = document.getElementById('cert-name').value.trim();
+  const link = document.getElementById('cert-link').value.trim();
+  if(!name) return alert('Please enter a certificate name.');
+  const html = `<div class="cert-card">
+    <i class="fas fa-certificate"></i>
+    <h3>${name}</h3>
+    ${link ? `<a href="${link}" target="_blank" class="btn-primary btn-sm">View Certificate</a>` : ''}
+  </div>`;
+  document.getElementById('cert-grid').insertAdjacentHTML('beforeend', html);
+  document.getElementById('cert-name').value='';
+  document.getElementById('cert-link').value='';
+  togglePanel('add-cert-panel');
+}
+
+// CHAT WIDGET
+function toggleChat(){
+  const w = document.getElementById('chat-window');
+  w.classList.toggle('open');
+}
+
+const botReplies = [
+  "Great question! I'll pass this to Sashank on WhatsApp right away 📲",
+  "Got it! Forwarding your message to Sashank now. He usually replies within a few hours!",
+  "Thanks for reaching out! Sashank will see this on WhatsApp shortly 👍",
+  "Message sent to Sashank! He'll get back to you soon.",
+];
+
+function sendMessage(){
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if(!text) return;
+  input.value = '';
+
+  const messages = document.getElementById('chat-messages');
+
+  // User bubble
+  messages.insertAdjacentHTML('beforeend',`<div class="msg user">${text}</div>`);
+
+  // Typing indicator
+  const typingId = 'typing-'+Date.now();
+  messages.insertAdjacentHTML('beforeend',`<div class="msg bot typing" id="${typingId}">Sending to WhatsApp...</div>`);
+  messages.scrollTop = messages.scrollHeight;
+
+  // Send to WhatsApp via wa.me link
+  const waMsg = encodeURIComponent(`[Portfolio Contact]\n\n${text}\n\n— Sent via ${YOUR_NAME}'s portfolio`);
+  const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${waMsg}`;
+  window.open(waUrl, '_blank');
+
+  // Bot reply after short delay
+  setTimeout(()=>{
+    document.getElementById(typingId)?.remove();
+    const reply = botReplies[Math.floor(Math.random()*botReplies.length)];
+    messages.insertAdjacentHTML('beforeend',`<div class="msg bot">${reply}</div>`);
+    messages.scrollTop = messages.scrollHeight;
+  }, 1500);
+}
+</script>
+</body>
+</html>
